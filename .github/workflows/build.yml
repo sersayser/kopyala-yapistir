@@ -77,12 +77,22 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt pyinstaller
 
-      - name: Build binary (Unix)
-        if: runner.os != 'Windows'
+      - name: Build binary (macOS)
+        if: runner.os == 'macOS'
         shell: bash
         run: |
           chmod +x build.sh
           ./build.sh
+
+      - name: Build binary (Linux, with xvfb)
+        # pynput import-zamanında X server'a bağlanır. PyInstaller hook
+        # da build sırasında pynput'u import etmek zorunda — DISPLAY yoksa
+        # bundle eksik kalır. xvfb-run ile sahte X server sağlıyoruz.
+        if: runner.os == 'Linux'
+        shell: bash
+        run: |
+          chmod +x build.sh
+          xvfb-run --auto-servernum ./build.sh
 
       - name: Build binary (Windows)
         if: runner.os == 'Windows'
