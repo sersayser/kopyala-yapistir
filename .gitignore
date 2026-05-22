@@ -1,0 +1,26 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+*.egg-info/
+.eggs/
+.pytest_cache/
+
+# PyInstaller artifacts
+build/
+dist/
+*.spec
+
+# Runtime data (uygulama çalıştıkça oluşur)
+raporlar/
+.secili_metin_kaydedici.json
+
+# macOS
+.DS_Store
+._*
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
