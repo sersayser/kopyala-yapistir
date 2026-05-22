@@ -15,17 +15,31 @@ import threading
 import time
 from pathlib import Path
 
+# Windows konsolu varsayılan olarak cp1252; Türkçe karakterler ('ı', 'ş', vs.)
+# encode edilemez ve UnicodeEncodeError fırlar. UTF-8'e zorlayalım.
+if sys.platform == "win32":
+    try:
+        sys.stdout.reconfigure(encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+    except Exception:
+        pass
+
 try:
     from pynput import keyboard
     from pynput.keyboard import Controller, Key
     import pyperclip
-except ImportError:
-    print("Gerekli paketler yüklü değil.")
+except ImportError as exc:
+    print("Gerekli paketler yüklü değil ya da yüklenemedi.")
+    print(f"Hata: {exc}")
     print()
     print("Yüklemek için:")
     print("    pip install -r requirements.txt")
     print("ya da:")
     print("    pip install pynput pyperclip")
+    print()
+    if sys.platform.startswith("linux"):
+        print("Linux notu: pynput X server gerektirir. Headless ortamda")
+        print("'xvfb-run ./secili-metin-kaydedici' ile sarmalayın.")
     sys.exit(1)
 
 

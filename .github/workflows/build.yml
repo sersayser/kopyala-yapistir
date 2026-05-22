@@ -66,6 +66,12 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements.txt') }}
           restore-keys: ${{ runner.os }}-pip-
 
+      - name: Install Linux system deps (xvfb for headless pynput)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y xvfb xclip
+
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
@@ -85,14 +91,22 @@ jobs:
           pyinstaller --onefile --name secili-metin-kaydedici --console --noconfirm --clean app.py
           Get-Item dist\secili-metin-kaydedici.exe | Format-List Name,Length
 
-      - name: Verify binary runs (--help)
+      - name: Verify binary runs (Linux, with xvfb)
+        if: runner.os == 'Linux'
         shell: bash
-        run: |
-          if [ "${{ runner.os }}" = "Windows" ]; then
-            ./dist/secili-metin-kaydedici.exe --help
-          else
-            ./dist/secili-metin-kaydedici --help
-          fi
+        run: xvfb-run --auto-servernum ./dist/secili-metin-kaydedici --help
+
+      - name: Verify binary runs (macOS)
+        if: runner.os == 'macOS'
+        shell: bash
+        run: ./dist/secili-metin-kaydedici --help
+
+      - name: Verify binary runs (Windows)
+        if: runner.os == 'Windows'
+        shell: pwsh
+        env:
+          PYTHONIOENCODING: utf-8
+        run: ./dist/secili-metin-kaydedici.exe --help
 
       - name: Package (Unix)
         if: runner.os != 'Windows'
