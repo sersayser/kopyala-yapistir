@@ -18,7 +18,35 @@ Tarayıcıdan, PDF okuyucudan, editörden — herhangi bir uygulamada metin seç
 
 ## Kurulum
 
-### Seçenek 1: Python kaynak
+### Seçenek 1: pip ile (en kolay)
+
+```bash
+# Doğrudan GitHub'dan
+pip install git+https://github.com/sersayser/kopyala-yapistir.git
+
+# Sonra her yerden çalıştır:
+kopyala-yapistir
+```
+
+Yerel bir klon üzerinde geliştirme yapıyorsanız:
+
+```bash
+git clone https://github.com/sersayser/kopyala-yapistir.git
+cd kopyala-yapistir
+pip install -e .   # editable install
+```
+
+### Seçenek 2: GitHub Releases'tan hazır binary
+
+Her tag push'unda CI otomatik olarak 4 platform için binary üretir. `Releases` sayfasından kendi platformunuza ait zip'i indirin: <https://github.com/sersayser/kopyala-yapistir/releases>
+
+Mevcut platformlar:
+- `kopyala-yapistir-macos-arm64.zip` — Apple Silicon Mac (M1/M2/M3/M4)
+- `kopyala-yapistir-macos-x86_64.zip` — Intel Mac
+- `kopyala-yapistir-linux-x86_64.zip` — Linux x86_64
+- `kopyala-yapistir-windows-x86_64.zip` — Windows x86_64
+
+### Seçenek 3: Kaynak + manuel çalıştırma (pip kurmadan)
 
 ```bash
 git clone https://github.com/sersayser/kopyala-yapistir.git
@@ -27,13 +55,13 @@ pip install -r requirements.txt
 python3 app.py
 ```
 
-### Seçenek 2: Tek dosyalık binary (kullanıcının pip'e ihtiyacı yok)
+### Seçenek 4: Kendi platformunuz için binary üret
 
 ```bash
 git clone https://github.com/sersayser/kopyala-yapistir.git
 cd kopyala-yapistir
-pip install pyinstaller
-./build.sh
+pip install -r requirements.txt pyinstaller
+./build.sh        # macOS / Linux
 ./dist/secili-metin-kaydedici
 ```
 

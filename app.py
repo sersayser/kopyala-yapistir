@@ -43,6 +43,8 @@ except ImportError as exc:
     sys.exit(1)
 
 
+__version__ = "1.1.0"
+
 CONFIG_FILE = Path.home() / ".secili_metin_kaydedici.json"
 DEFAULT_HOTKEY = "<ctrl>+<shift>+s"
 SENTINEL = "\x00\x01__SMK_SENTINEL_DO_NOT_USE__\x01\x00"
@@ -381,6 +383,11 @@ def parse_args():
         "--self-test",
         action="store_true",
         help="Bağımlılıkları, panoyu ve dosya yazımını sınar; sonra çıkar.",
+    )
+    parser.add_argument(
+        "--version",
+        action="version",
+        version=f"kopyala-yapistir {__version__}",
     )
     return parser.parse_args()
 

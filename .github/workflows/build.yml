@@ -155,3 +155,4 @@ jobs:
         with:
           files: ${{ matrix.artifact_name }}.zip
           fail_on_unmatched_files: true
+          generate_release_notes: true

@@ -1,0 +1,50 @@
+[build-system]
+requires = ["setuptools>=61", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kopyala-yapistir"
+version = "1.1.0"
+description = "Ekrandaki seçili metni global hotkey ile rapor-N.txt dosyalarına kaydeden çapraz platform terminal aracı."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { file = "LICENSE" }
+authors = [
+    { name = "Serkan Saykal", email = "serkansaykal@gmail.com" }
+]
+keywords = [
+    "clipboard", "hotkey", "text-capture", "terminal",
+    "cross-platform", "pynput", "productivity", "cli"
+]
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: MacOS",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Utilities",
+    "Topic :: Office/Business",
+]
+dependencies = [
+    "pynput>=1.7.6",
+    "pyperclip>=1.8.2",
+]
+
+[project.urls]
+Homepage = "https://github.com/sersayser/kopyala-yapistir"
+Repository = "https://github.com/sersayser/kopyala-yapistir"
+Issues = "https://github.com/sersayser/kopyala-yapistir/issues"
+Releases = "https://github.com/sersayser/kopyala-yapistir/releases"
+
+[project.scripts]
+kopyala-yapistir = "app:main"
+
+[tool.setuptools]
+py-modules = ["app"]
