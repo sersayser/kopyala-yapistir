@@ -1,6 +1,16 @@
 # Kopyala-Yapıştır
 
+[![PyPI](https://img.shields.io/pypi/v/kopyala-yapistir.svg)](https://pypi.org/project/kopyala-yapistir/)
+[![Python](https://img.shields.io/pypi/pyversions/kopyala-yapistir.svg)](https://pypi.org/project/kopyala-yapistir/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Build](https://github.com/sersayser/kopyala-yapistir/actions/workflows/build.yml/badge.svg)](https://github.com/sersayser/kopyala-yapistir/actions/workflows/build.yml)
+
 Ekrandaki seçili metni tek tuş kombinasyonuyla `rapor-N.txt` dosyalarına kaydeden çapraz platform terminal uygulaması. Linux / macOS / Windows.
+
+```bash
+pip install kopyala-yapistir
+kopyala-yapistir
+```
 
 Tarayıcıdan, PDF okuyucudan, editörden — herhangi bir uygulamada metin seçin, ayarladığınız tuş kombinasyonuna basın, metin otomatik olarak `raporlar/` klasörüne yazılır.
 
@@ -18,14 +28,21 @@ Tarayıcıdan, PDF okuyucudan, editörden — herhangi bir uygulamada metin seç
 
 ## Kurulum
 
-### Seçenek 1: pip ile (en kolay)
+### Seçenek 1: PyPI'dan (en kolay)
 
 ```bash
-# Doğrudan GitHub'dan
-pip install git+https://github.com/sersayser/kopyala-yapistir.git
+pip install kopyala-yapistir
 
 # Sonra her yerden çalıştır:
 kopyala-yapistir
+```
+
+Paket sayfası: <https://pypi.org/project/kopyala-yapistir/>
+
+### Seçenek 2: GitHub'dan doğrudan (en güncel)
+
+```bash
+pip install git+https://github.com/sersayser/kopyala-yapistir.git
 ```
 
 Yerel bir klon üzerinde geliştirme yapıyorsanız:
@@ -36,7 +53,7 @@ cd kopyala-yapistir
 pip install -e .   # editable install
 ```
 
-### Seçenek 2: GitHub Releases'tan hazır binary
+### Seçenek 3: GitHub Releases'tan hazır binary
 
 Her tag push'unda CI otomatik olarak 4 platform için binary üretir. `Releases` sayfasından kendi platformunuza ait zip'i indirin: <https://github.com/sersayser/kopyala-yapistir/releases>
 
